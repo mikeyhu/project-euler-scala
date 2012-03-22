@@ -3,5 +3,5 @@
 .settings
 .scala_dependencies
 target/*
-
-
+project/target/*
+project/project/target/*
