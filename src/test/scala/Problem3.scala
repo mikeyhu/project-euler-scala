@@ -4,28 +4,23 @@ import scala.annotation.tailrec
 
 object Problem3 {
   def primeFactors(requested : Long) : List[Long] = {
-    primeFactors(requested,1,math.sqrt(requested).toLong, List()).sortWith((a,b)=> a < b)
+    primeFactors(requested,1,math.sqrt(requested).toLong,List()).sortWith((a,b)=> a < b)
   }
   
   @tailrec
-  def primeFactors(requested : Long ,division : Long, end: Long, list : List[Long]) : List[Long] = {
-    if(division > end) list
-    else if(requested % division != 0) primeFactors(requested,division + 1,end,list)
-    else primeFactors(requested,division+1,end,primes(requested,division) ::: list)
+  def primeFactors(requested : Long ,iterator : Long, end: Long, list : List[Long]) : List[Long] = {
+    if(iterator > end) list
+    else if(requested % iterator != 0) primeFactors(requested,iterator + 1,end,list)
+    else primeFactors(requested,iterator+1,end,primes(requested,iterator) ::: list)
   }
   
-  def primes(requested:Long, division:Long) : List[Long] = isPrime(division) ::: isPrime(requested / division)
+  def primes(requested:Long, iterator:Long) : List[Long] = isPrime(iterator) ::: isPrime(requested / iterator)
   
-  def isPrime(number :Long) :List[Long] = {
-    if(primeRec(2,number)) List(number)
-    else List()
-  }
-
   @tailrec
-  def primeRec(division:Long, number:Long) : Boolean = {
-    if(number % division == 0) false
-    else if(division > number/2) true
-    else primeRec(division+1,number)
+  def isPrime(numberToCheck:Long, division:Long=2) : List[Long] = {
+    if(division > numberToCheck/2) List(numberToCheck)
+    else if(numberToCheck % division == 0) List()
+    else isPrime(numberToCheck,division+1)
   }
 }
 
