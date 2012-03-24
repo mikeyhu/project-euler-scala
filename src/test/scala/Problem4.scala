@@ -4,14 +4,13 @@ import scala.annotation.tailrec
 
 object Problem4 {
   def palindromes(max : Int) = {
-    (for {
+    for {
       outer <- 2 to max
       inner <- 1 to (outer - 1) 
       val num = outer*inner
       if isPalindrome(num.toString())
     } yield num
-    ).sortWith((a,b) => a<b)
-  }
+  }.sortWith((a,b) => a<b)
   
   @tailrec
   def isPalindrome(characters : String, position:Int = 0) : Boolean = 
