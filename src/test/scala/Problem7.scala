@@ -28,7 +28,7 @@ class Primes(thisPrime:Int=2) extends Stream[Int] {
   
   @tailrec
   private def isPrime(numberToCheck:Int, division:Int=2) : Boolean = {
-    if(division > numberToCheck/2) true
+    if(division > math.sqrt(numberToCheck)) true
     else if(numberToCheck % division == 0) false
     else isPrime(numberToCheck,division+1)
   }
