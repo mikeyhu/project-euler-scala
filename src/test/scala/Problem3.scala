@@ -4,7 +4,7 @@ import scala.annotation.tailrec
 
 object Problem3 {
   def primeFactors(requested : Long) : List[Long] = {
-    primeFactors(requested,1,math.sqrt(requested).toLong,List()).sortWith((a,b)=> a < b)
+    primeFactors(requested,1,math.sqrt(requested).toLong,List()).sortWith((a,b)=> a > b)
   }
   
   @tailrec
@@ -26,10 +26,10 @@ object Problem3 {
 
 class Problem3Tests extends FunSuite with ShouldMatchers {
   test("Largest Prime Factor of 13195 should be 29") {
-    Problem3.primeFactors(13195).last should be(29)
+    Problem3.primeFactors(13195).head should be(29)
   }
 
   test("Largest Prime Factor of 600851475143 should be 6857") {
-    Problem3.primeFactors(600851475143l).last should be(6857)
+    Problem3.primeFactors(600851475143l).head should be(6857)
   }
 }

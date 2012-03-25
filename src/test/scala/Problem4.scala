@@ -10,7 +10,7 @@ object Problem4 {
       val num = outer*inner
       if isPalindrome(num.toString())
     } yield num
-  }.sortWith((a,b) => a<b)
+  }.sortWith((a,b) => a>b)
   
   @tailrec
   def isPalindrome(characters : String, position:Int = 0) : Boolean = 
@@ -21,10 +21,10 @@ object Problem4 {
 
 class Problem4Tests extends FunSuite with ShouldMatchers {
   test("The largest palindrome from a 2 digit product should be 9009") {
-    Problem4.palindromes(99).last should be (9009)
+    Problem4.palindromes(99).head should be (9009)
   }
   
   test("The largest palindrome from a 3 digit product should be 906609") {
-    Problem4.palindromes(999).last should be (906609)
+    Problem4.palindromes(999).head should be (906609)
   }
 }
